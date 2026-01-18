@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active Reminders List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2ab",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#18181b",
+                        "surface-dark": "#24242b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen font-display">
+<!-- iOS Status Bar Spacer -->
+<div class="h-12 w-full"></div>
+<!-- Header Section -->
+<header class="px-6 py-4 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Active Reminders</h1>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+</div>
+</div>
+<p class="text-sm font-medium text-slate-500 dark:text-primary/80 uppercase tracking-widest">4 proximity triggers active</p>
+</header>
+<!-- Main List Container -->
+<main class="px-4 pb-32 pt-4 flex flex-col gap-4">
+<!-- Reminder Card 1 -->
+<div class="bg-white dark:bg-surface-dark p-5 rounded-xl flex flex-col gap-4 custom-shadow border border-slate-100 dark:border-white/5 active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">local_laundry_service</span>
+</div>
+<div>
+<h3 class="text-lg font-semibold leading-none">Pick up dry cleaning</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Near 5th Avenue Cleaners</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-primary/30 bg-primary/5">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-tighter">200m</span>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 font-normal leading-relaxed">The blue ticket is in my wallet's front pocket. Don't forget the silk scarf.</p>
+</div>
+<!-- Reminder Card 2 -->
+<div class="bg-white dark:bg-surface-dark p-5 rounded-xl flex flex-col gap-4 custom-shadow border border-slate-100 dark:border-white/5 active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">shopping_basket</span>
+</div>
+<div>
+<h3 class="text-lg font-semibold leading-none">Grocery Shopping</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Whole Foods Market</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-primary/30 bg-primary/5">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-tighter">500m</span>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 font-normal leading-relaxed">Buy almond milk, avocados, and the sourdough bread from the back bakery.</p>
+</div>
+<!-- Reminder Card 3 -->
+<div class="bg-white dark:bg-surface-dark p-5 rounded-xl flex flex-col gap-4 custom-shadow border border-slate-100 dark:border-white/5 active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">library_books</span>
+</div>
+<div>
+<h3 class="text-lg font-semibold leading-none">Return library books</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Central Branch</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-primary/30 bg-primary/5">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-tighter">1km</span>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 font-normal leading-relaxed">Three books on back seat. Use the after-hours drop box if closed.</p>
+</div>
+<!-- Reminder Card 4 -->
+<div class="bg-white dark:bg-surface-dark p-5 rounded-xl flex flex-col gap-4 custom-shadow border border-slate-100 dark:border-white/5 active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">mail</span>
+</div>
+<div>
+<h3 class="text-lg font-semibold leading-none">Post Office</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Station North P.O.</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-primary/30 bg-primary/5">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-tighter">300m</span>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 font-normal leading-relaxed">Mail the birthday package for Sarah. Check for international stamps.</p>
+</div>
+<!-- Map Mini-View (Abstracted for Context) -->
+<div class="mt-4 relative h-48 w-full rounded-2xl overflow-hidden border border-slate-100 dark:border-white/5">
+<div class="absolute inset-0 bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+<div class="relative w-full h-full overflow-hidden opacity-50">
+<!-- Abstract Map Pattern -->
+<div class="absolute inset-0 grid grid-cols-6 grid-rows-4 gap-1 transform rotate-12 scale-150">
+<div class="bg-primary/20 rounded-md"></div>
+<div class="bg-primary/10 rounded-md"></div>
+<div class="bg-primary/20 rounded-md"></div>
+<div class="bg-primary/10 rounded-md"></div>
+<div class="bg-primary/30 rounded-md"></div>
+<div class="bg-primary/10 rounded-md"></div>
+<div class="bg-primary/10 rounded-md"></div>
+<div class="bg-primary/20 rounded-md"></div>
+<div class="bg-primary/10 rounded-md"></div>
+<div class="bg-primary/30 rounded-md"></div>
+</div>
+</div>
+<div class="z-10 bg-primary size-4 rounded-full border-4 border-white dark:border-background-dark animate-pulse shadow-lg shadow-primary/50"></div>
+<p class="absolute bottom-4 left-4 bg-white/80 dark:bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Active Tracking: NYC</p>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<div class="fixed bottom-10 right-6 z-50">
+<button class="bg-primary text-background-dark size-16 rounded-full flex items-center justify-center shadow-xl shadow-primary/30 hover:scale-110 active:scale-90 transition-all">
+<span class="material-symbols-outlined text-4xl font-bold">add</span>
+</button>
+</div>
+<!-- iOS Home Indicator -->
+<div class="fixed bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
+</body></html>

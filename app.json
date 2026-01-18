@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "Active Reminder",
+    "slug": "active-reminder",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.elkom.activereminder",
+      "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Active Reminder needs access to your location to trigger reminders even when the app is in the background.",
+        "NSLocationAlwaysUsageDescription": "Active Reminder needs access to your location to trigger reminders even when the app is in the background.",
+        "NSLocationWhenInUseUsageDescription": "Active Reminder needs access to your location to show where you are on the map."
+      }
+    },
+    "android": {
+      "package": "com.elkom.activereminder",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#18181b"
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "NOTIFICATIONS"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Active Reminder to use your location."
+        }
+      ],
+      "expo-notifications"
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Reminder Task</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2ab",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#18181b",
+                        "surface-dark": "#24242b",
+                        "accent-yellow": "#F5DC08"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 ios-blur border-b border-slate-200 dark:border-white/5">
+<div class="flex items-center justify-between px-6 h-16">
+<button class="text-primary font-medium text-lg hover:opacity-70 transition-opacity">Cancel</button>
+<h1 class="text-lg font-bold tracking-tight">Edit Task</h1>
+<div class="w-12"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="flex-1 flex flex-col p-6 max-w-lg mx-auto w-full space-y-8">
+<!-- Task Title Section -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-1" for="task-title">Task Title</label>
+<span class="material-symbols-outlined text-primary text-sm">edit_note</span>
+</div>
+<div class="relative group">
+<input class="w-full bg-white dark:bg-surface-dark border-none rounded-xl p-5 text-lg font-semibold text-slate-900 dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-600 focus:ring-2 focus:ring-primary/50 transition-all shadow-sm" id="task-title" placeholder="e.g., Pick up dry cleaning" type="text" value="Collect Central Cleaners order"/>
+</div>
+</section>
+<!-- Description Section -->
+<section class="space-y-3">
+<label class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-1" for="task-desc">Notes / Description</label>
+<textarea class="w-full bg-white dark:bg-surface-dark border-none rounded-xl p-5 min-h-[140px] text-base font-normal leading-relaxed text-slate-700 dark:text-slate-300 placeholder:text-slate-300 dark:placeholder:text-slate-600 focus:ring-2 focus:ring-primary/50 transition-all shadow-sm resize-none" id="task-desc" placeholder="Add more details here...">Check for the blue silk scarf specifically. They mentioned it might need an extra day for the delicate treatment. Ticket #4402.</textarea>
+</section>
+<!-- Location Context Section -->
+<section class="space-y-3">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Remind me at</h3>
+<span class="text-[10px] font-bold bg-accent-yellow/10 text-accent-yellow px-2 py-0.5 rounded-full uppercase">Active Geofence</span>
+</div>
+<div class="group relative overflow-hidden bg-white dark:bg-surface-dark rounded-xl p-4 flex items-center gap-4 border border-transparent hover:border-primary/30 transition-all cursor-pointer shadow-sm">
+<div class="size-14 rounded-lg overflow-hidden shrink-0 bg-slate-200 dark:bg-slate-800 relative">
+<img alt="Map location preview" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500" data-alt="A stylized map showing a pinpoint in a city center" data-location="Downtown Manhattan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCWk_j0Xz9TcGKcizhAxkF4VV89a3bQTcu5yWxhu5kHigLL5A4wOq9_sYPXv5tDxxzrr5syTRc8a0PdN-RMkP68It9kHVndgCvFjkAzd4h8leDPrv1Ml-R3Bk7MlCqeLBM-ZBGSm8O51kzTL7vlNUGpx2-CLXUO2i4iLfIqTsmOxP6VIx8Mcdx1UC7XeokLbpmB8DalXwHfV_tfhN0xhOEtU-OltvSbC9lWA5Qf3L9WpLc4G3p_LPdGr5GaYbPE8rbKo1RE3U_wA"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary drop-shadow-md">location_on</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-base font-bold text-slate-900 dark:text-white truncate">Central Cleaners</p>
+<p class="text-sm text-slate-500 dark:text-slate-400 truncate">123 Main St, Downtown</p>
+</div>
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</section>
+<!-- Spacer -->
+<div class="flex-1"></div>
+<!-- Footer Actions -->
+<div class="space-y-4 pt-6 pb-10">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold text-lg py-5 rounded-xl transition-all active:scale-[0.98] shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined font-bold">check_circle</span>
+                Save Changes
+            </button>
+<button class="w-full py-4 text-sm font-bold text-rose-500/60 hover:text-rose-500 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">delete</span>
+                Delete Task
+            </button>
+</div>
+</main>
+<!-- Bottom Indicator for iOS-like feel -->
+<div class="h-1.5 w-32 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mb-2 opacity-20"></div>
+</body></html>

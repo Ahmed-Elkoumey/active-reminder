@@ -1,0 +1,88 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    environment:
+      groups:
+        - keystore_credentials
+      vars:
+        PACKAGE_NAME: "com.elkom.activereminder"
+      node: 20.10.0
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install
+
+      - name: Expo Prebuild
+        script: |
+          # Generates the native android and ios directories
+          npx expo prebuild --platform android
+
+      - name: Build Android Release
+        script: |
+          # Generate a temporary keystore for this build only
+          keytool -genkey -v -keystore /tmp/keystore.keystore \
+            -alias active-reminder-alias \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass password123 -keypass password123 \
+            -dname "CN=Active Reminder,O=Elkom,C=US"
+
+          cd android
+          ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.file=/tmp/keystore.keystore \
+            -Pandroid.injected.signing.store.password=password123 \
+            -Pandroid.injected.signing.key.alias=active-reminder-alias \
+            -Pandroid.injected.signing.key.password=password123
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - ahmedelkoumey@gmail.com
+        notify:
+          success: true
+          failure: true
+
+  ios-workflow:
+    name: iOS Workflow
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    environment:
+      vars:
+        XCODE_WORKSPACE: "ActiveReminder.xcworkspace"
+        XCODE_SCHEME: "ActiveReminder"
+      node: 20.10.0
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install
+
+      - name: Expo Prebuild
+        script: |
+          npx expo prebuild --platform ios
+
+      - name: Install CocoaPods
+        script: |
+          cd ios
+          pod install
+
+      - name: Build iOS (Simulator/Generic)
+        script: |
+          # Note: Build for simulator or development if code signing isn't fully set up in CI
+          # For a downloadable .ipa, you need an Apple Developer Program membership and keys
+          xcode-project build-ipa \
+            --workspace "ios/$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - ios/build/outputs/**/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      email:
+        recipients:
+          - ahmedelkoumey@gmail.com
+        notify:
+          success: true
+          failure: true
