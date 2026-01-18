@@ -78,7 +78,7 @@ workflows:
             -scheme "$XCODE_SCHEME" \
             -configuration Debug \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            -destination 'platform=iOS Simulator,name=iPhone 17' \
             -derivedDataPath build
     artifacts:
       - build/Build/Products/Debug-iphonesimulator/*.app
