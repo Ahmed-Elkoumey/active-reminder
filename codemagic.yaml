@@ -69,16 +69,19 @@ workflows:
           cd ios
           pod install
 
-      - name: Build iOS (Simulator/Generic)
+      - name: Build iOS (Simulator .app)
         script: |
-          # Note: Build for simulator or development if code signing isn't fully set up in CI
-          # For a downloadable .ipa, you need an Apple Developer Program membership and keys
-          xcode-project build-ipa \
-            --workspace "ios/$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
+          # Building for simulator is much faster and doesn't require complex code signing for CI tests
+          # This will output a .app folder that CodeMagic will automatically zip as an artifact
+          xcodebuild build \
+            -workspace "ios/$XCODE_WORKSPACE" \
+            -scheme "$XCODE_SCHEME" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            -derivedDataPath build
     artifacts:
-      - ios/build/outputs/**/*.ipa
-      - /tmp/xcodebuild_logs/*.log
+      - build/Build/Products/Debug-iphonesimulator/*.app
     publishing:
       email:
         recipients:
