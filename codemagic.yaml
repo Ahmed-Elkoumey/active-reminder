@@ -16,12 +16,10 @@ workflows:
 
       - name: Expo Prebuild
         script: |
-          # Generates the native android and ios directories
           npx expo prebuild --platform android
 
       - name: Build Android Release
         script: |
-          # Generate a temporary keystore for this build only
           keytool -genkey -v -keystore /tmp/keystore.keystore \
             -alias active-reminder-alias \
             -keyalg RSA -keysize 2048 -validity 10000 \
@@ -40,50 +38,31 @@ workflows:
       email:
         recipients:
           - ahmedelkoumey@gmail.com
-        notify:
-          success: true
-          failure: true
 
   ios-workflow:
     name: iOS Workflow
-    max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
-      vars:
-        XCODE_WORKSPACE: "ActiveReminder.xcworkspace"
-        XCODE_SCHEME: "ActiveReminder"
       node: 20.10.0
       xcode: latest
-      cocoapods: default
     scripts:
       - name: Install dependencies
-        script: |
-          npm install
+        script: npm install
 
       - name: Expo Prebuild
-        script: |
-          # Ensure current code is exported to native iOS project
-          npx expo prebuild --platform ios
+        script: npx expo prebuild --platform ios
 
       - name: Install CocoaPods
-        script: |
-          cd ios
-          pod install
+        script: cd ios && pod install
 
-      - name: Build iOS (Physical Device IPA)
+      - name: Build iOS IPA
         script: |
-          # Building for real devices requires code signing.
-          # If you haven't uploaded your certificates to CodeMagic, this step will fail.
           xcode-project build-ipa \
-            --workspace "ios/$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
+            --workspace "ios/ActiveReminder.xcworkspace" \
+            --scheme "ActiveReminder"
     artifacts:
       - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
     publishing:
       email:
         recipients:
           - ahmedelkoumey@gmail.com
-        notify:
-          success: true
-          failure: true
